@@ -10,6 +10,9 @@ import Inicial from './src/pages/inicial';
 import Reserva from './src/pages/reserva';
 import Cancelado from './src/pages/cancelado';
 import Confirmado from './src/pages/confirmado';
+import ConfirmaDados from './src/pages/confirmarDados';
+import CadastraCpfE from './src/pages/cadastracpfe';
+import Suasreservas from './src/pages/suasreservas';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +28,9 @@ function App() {
         <Stack.Screen name="reserva" component={Reserva} />
         <Stack.Screen name="cancelado" component={Cancelado} />
         <Stack.Screen name="confirmado" component={Confirmado} />
+        <Stack.Screen name="confirmaDados" component={ConfirmaDados} />
+        <Stack.Screen name="cadastracpfe" component={CadastraCpfE} />
+        <Stack.Screen name="suasreservas" component={Suasreservas} />
       </Stack.Navigator>
     </NavigationContainer>
   );
