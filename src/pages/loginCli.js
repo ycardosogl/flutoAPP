@@ -57,7 +57,7 @@ const loginCli = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.text}>Entrar</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('suasreservas')}>
+          <TouchableOpacity onPress={() => navigation.navigate('cancelado')}>
             <Text style={styles.text1}>cadastre-se</Text>
           </TouchableOpacity>
     </View>

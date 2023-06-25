@@ -41,7 +41,7 @@ const navigation = useNavigation();
 
     logo:{
       
-     bottom:50,
+     bottom:40,
       width:350,
          height:300,
          
