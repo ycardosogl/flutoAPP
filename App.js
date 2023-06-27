@@ -14,6 +14,7 @@ import ConfirmaDados from './src/pages/confirmarDados';
 import CadastraCpfE from './src/pages/cadastracpfe';
 import Suasreservas from './src/pages/suasreservas';
 
+
 const Stack = createStackNavigator();
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
         <Stack.Screen name="confirmaDados" component={ConfirmaDados} />
         <Stack.Screen name="cadastracpfe" component={CadastraCpfE} />
         <Stack.Screen name="suasreservas" component={Suasreservas} />
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   );

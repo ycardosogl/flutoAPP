@@ -8,11 +8,14 @@ const navigation = useNavigation();
     return (
         
           <View style={styles.fundo} >
-            
+             <Text style={styles.text4} >FlutoAPP</Text>
             <Image
           source={require('../pages/imagens/logo.png')}
           style={styles.logo}
+          
           />
+          
+
             <TouchableOpacity  style={styles.button} onPress={() => navigation.navigate('loginCli')}>
                 <Text style={styles.text} >Procuro Flutuante</Text>
             </TouchableOpacity>
@@ -41,8 +44,8 @@ const navigation = useNavigation();
 
     logo:{
       
-     bottom:40,
-      width:350,
+     bottom:90,
+      width:380,
          height:300,
          
 
@@ -52,7 +55,7 @@ const navigation = useNavigation();
         button: {
             alignItems: 'center',
             justifyContent: 'center',
-         width:210,
+         width:230,
          height:60,
           borderRadius: 15,
           elevation: 3,
@@ -67,11 +70,21 @@ const navigation = useNavigation();
           fontWeight: 'bold',
           letterSpacing: 0.25,
           color: 'white',
+         
+        },
+        text4: {
+           
+          fontSize: 34,
+          lineHeight: 34,
+          fontWeight: '',
+          letterSpacing: 0.25,
+          color: 'white',
+          bottom:65
         },
         button2: {
             alignItems: 'center',
             justifyContent: 'center',
-         width:210,
+         width:230,
          height:60,
           borderRadius: 15,
           elevation: 3,

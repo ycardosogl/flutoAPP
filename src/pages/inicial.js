@@ -11,13 +11,10 @@ const navigation = useNavigation();
         
      
 <View style={styles.container}>
-<TextInput
-        placeholder="Insira o local desejado"
-        secureTextEntry
-        onChangeText={setLo}
-        value={password}
-      />
-          
+
+<TouchableOpacity  style={styles.button} onPress={() => navigation.navigate('reserva')}>
+                <Text style={styles.text} >Procuro Flutuante</Text>
+            </TouchableOpacity>
     </View>
 
       );

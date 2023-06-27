@@ -1,38 +1,39 @@
 import React, { useState } from 'react';
-import { View, Text,  TextInput,TouchableOpacity, Image, StyleSheet, Button} from 'react-native';
+import { View, Text,  TextInput,TouchableOpacity, Image, StyleSheet, Button, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import usuarioService from '../services/usuarioService';
 
 const loginCli = () => {
-    const navigation = useNavigation();
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-  
-    const handleSubmit = () => {
-      const user = {
-        email: email,
-        senha: senha
-      }
-  
-      usuarioService
-        .loginUsuario(user)
-        .then((response) => {
-          if (response.status === 200 || response.status === 201) {
-            const id_cliente = response.data
-            console.log(id_cliente)
-            Alert.alert('Bem-vindo!');
-            navigation.navigate('Routes', { id_cliente })
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setErrorMessage('Email ou senha inválidos');
-        });
-    };
-  
-    const handleLogin = () => {
-      navigation.navigate('cadastroCli');
-    };
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [error, setError] = useState('');
+  const navigation = useNavigation();
+   
+  const handleCadastro = () => {
+    navigation.navigate('cadastroCli');
+  };
+  const handleSubmit = () => {
+    console.log(email, senha);
+
+    
+
+    usuarioService
+      .loginUsuario(email, senha)
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          console.log(response)
+          Alert.alert('Bem-vindo!');
+          setEmail('');
+          setSenha('');
+          navigation.navigate('inicial');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert('Email ou senha inválidos');
+      });
+  };
+
 
   return (
   
@@ -43,7 +44,8 @@ const loginCli = () => {
       <TextInput
         style={styles.input}
         placeholder="exemplo@gmail.com"
-        onChangeText={setEmail}
+        onChangeText={(text) => setEmail(text)}
+            required
         value={email}
       />
       <Text style={styles.text4}>Senha</Text>
@@ -51,13 +53,14 @@ const loginCli = () => {
         style={styles.input}
         placeholder="Insira sua senha "
         secureTextEntry
-        onChangeText={setSenha}
         value={senha}
+        onChangeText={(text) => setSenha(text)}
+        required
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.text}>Entrar</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('cancelado')}>
+          <TouchableOpacity onPress={() => navigation.navigate('cadastroCli')}>
             <Text style={styles.text1}>cadastre-se</Text>
           </TouchableOpacity>
     </View>

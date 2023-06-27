@@ -2,8 +2,10 @@ import { View, Text,  TextInput,TouchableOpacity, Image, StyleSheet, Button,Head
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
+import axios from 'axios';
+import reservasService from '../services/reservasService';
 import { TextInputMask } from 'react-native-masked-text'
+
 
 
 

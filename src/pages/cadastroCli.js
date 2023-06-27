@@ -1,71 +1,31 @@
 import React, { useState } from 'react';
 import { View, Text,  TextInput,TouchableOpacity, Image, StyleSheet, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import usuarioService from '../services/usuarioService';
+import axios from 'axios';
 
 const cadastroCli = () => {
     const navigation = useNavigation();
   
   
     const [formData, setFormData] = useState({
-      _id: '',
       email: '',
       nome: '',
-      telefone: '',
       senha: '',
-      confirmasenha: '',
-      nrsec: '',
     });
   
     const handleChange = (name, value) => {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
+      setFormData({
+        ...formData,
+        [name]: value
+      });
     };
   
     const handleSubmit = async () => {
       try {
-        const teste = (formData.nrsec = '123');
-    
-        if (
-          formData.nome.trim() === '' ||
-          formData.email.trim() === '' ||
-          formData.senha.trim() === ''
-        ) {
-          alert('Preencha todos os campos!');
-          return;
-        } else if (formData.confirmasenha !== formData.senha) {
-          alert('Verifique se as senhas são iguais');
-          return;
-        } else if (formData.telefone.trim().length < 11) {
-          alert('Número de telefone inválido!');
-          return;
-        }
-    
-        try {
-          const user = await usuarioService.postUsuario(formData);
-          try {
-            formData._id = user.data;
-            console.log(formData._id)
-            await clientesService.postClientes(formData);
-            alert('Inserido com Sucesso!');
-            navigation.navigate('Login')
-          } catch (error) {
-            console.error(error);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-    
-        // Zerar os valores dos inputs
-        setFormData({
-          email: '',
-          nome: '',
-          telefone: '',
-          senha: '',
-          confirmasenha: '',
-          nrsec: '',
-        });
+        console.log(formData);
+        await usuarioService.postUsuario(formData);
+        alert('Inserido!');
       } catch (error) {
         console.error(error);
       }
@@ -76,32 +36,26 @@ const cadastroCli = () => {
     <View style={styles.container}>
         <Text style={styles.frase}>Insira suas Informações!</Text>
         <TextInput
-        style={styles.input}
-        placeholder="Nome Completo"
-        onChangeText={setEmail}
-        value={email}
-      />
+          style={styles.input}
+          placeholder="Nome"
+          value={formData.nome}
+          onChangeText={(text) => handleChange('nome', text)}
+        />
       <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={setEmail}
-        value={email}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Criar Senha"
-        secureTextEntry
-        onChangeText={setPassword}
-        value={password}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirmar Senha"
-        secureTextEntry
-        onChangeText={setPassword}
-        value={password}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          style={styles.input}
+          placeholder="Email"
+          value={formData.email}
+          onChangeText={(text) => handleChange('email', text)}
+        />
+       <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          value={formData.senha}
+          onChangeText={(text) => handleChange('senha', text)}
+          secureTextEntry
+        />
+        
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.text}>Cadastrar</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('loginCli')}>
