@@ -6,10 +6,10 @@ var Schema = mongoose.Schema;
 
 var Reserva = new Schema ({
 
-    acompanhantes      : { type:Number, required: true},
+    acompanhantes: { type:Number, required: true},
     data        : { type:Date,  required: true},            
-    horainicial      : { type:Number,  required: true},
-    horafinal         : { type:Number,  required: true},    
+    horainicial : { type:Number,  required: true},
+    horafinal   : { type:Number,  required: true},    
     valor       : { type:Number,  required: true},
       
 })
