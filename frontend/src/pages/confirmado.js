@@ -16,7 +16,7 @@ const navigation = useNavigation();
           <Text style={styles.text2}>Confirmado</Text>
           <Text style={styles.text1}>Sua Reserva foi confirmada,{'\n'} aguardamos por você!</Text>
             <TouchableOpacity  style={styles.button} onPress={() => navigation.navigate('inicial')}>
-                <Text style={styles.text}>Finalizar</Text>
+                <Text style={styles.text}>Finalizar </Text>
             </TouchableOpacity>
            
           </View>

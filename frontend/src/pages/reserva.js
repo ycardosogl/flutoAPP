@@ -32,8 +32,10 @@ const reserva = () => {
   const handleSubmit = async () => {
     try {
       console.log(formData);
-      await reservasService.createReserva(formData);
-      alert('Sua reserva foi feita!');
+      formData.valor = "1000"
+      await reservasService.createReservas(formData);
+      
+      navigation.navigate('confirmado')
     } catch (error) {
       console.error(error);
     }
@@ -43,6 +45,7 @@ const reserva = () => {
     return (
   
       <View style={styles.fundo}>
+        <Image source={require('./imagens/1.jpg')} style={styles.logo2}/>
         <Text style={styles.text2}>Instalações Disponíveis</Text>
             <Image
               source={require('../pages/imagens/detalhe.png')}
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.25,
         color: 'Black',
         left:14,
-        top:218
+        top:35
         
       },
 
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.25,
         color: 'Black',
         left:14,
-        top:210
+        top:20
         
       },
       fundo:{
@@ -131,8 +134,13 @@ const styles = StyleSheet.create({
 
     logo:{
       left:19,
-      top:215
+      top:30
     },
+    logo2:{
+      width:350,
+      left:24
+      
+     },
 
     input: {
       width: '44%',
@@ -144,7 +152,7 @@ const styles = StyleSheet.create({
       borderRadius: 9,
       backgroundColor: '#fff',
       left:10,
-      top:225 
+      top:50
     },
     button: {
       
@@ -154,8 +162,8 @@ const styles = StyleSheet.create({
       height:50,
       borderRadius: 15,
       backgroundColor: '#658EF8',
-      left:10,
-      top:160,
+      left:8,
+      bottom:30,
       borderWidth:1
       
       
@@ -170,7 +178,7 @@ const styles = StyleSheet.create({
       borderRadius: 15,
       backgroundColor: '#FF0000',
       left:200,
-      top:110,
+     bottom:80,
       borderColor:'#0D2667',
       borderWidth:1
      
@@ -198,7 +206,7 @@ const styles = StyleSheet.create({
       borderRadius: 9,
       backgroundColor: '#fff',
       left:10,
-      top:230 
+      top:50 
     },
     input2: {
       width: '44%',
@@ -212,8 +220,8 @@ const styles = StyleSheet.create({
       left:200,
       padding: 10,
        fontSize: 16,
-       bottom:72,
-       top:159,
+       bottom:21,
+       
         
     },
     input3: {
@@ -226,7 +234,7 @@ const styles = StyleSheet.create({
       borderRadius: 9,
       backgroundColor: '#fff',
       left:10,
-      top:225
+      top:50
       
        },
 
@@ -240,7 +248,7 @@ const styles = StyleSheet.create({
         borderRadius: 9,
         backgroundColor: '#fff',
         left:10,
-        top:160
+        bottom:25
 
        }
 

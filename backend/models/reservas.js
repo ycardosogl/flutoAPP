@@ -10,7 +10,7 @@ var Reserva = new Schema ({
     data        : { type:Date,  required: true},            
     horainicial : { type:Number,  required: true},
     horafinal   : { type:Number,  required: true},    
-    valor       : { type:Number,  required: true},
+    valor       : { type:Number},
       
 })
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text,  TextInput,TouchableOpacity, Image, StyleSheet, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import usuarioService from '../services/usuarioService';
+import clientesService from '../services/clientesService'
 import axios from 'axios';
 
 const cadastroCli = () => {
@@ -12,6 +13,8 @@ const cadastroCli = () => {
       email: '',
       nome: '',
       senha: '',
+      cpf:'',
+      fone:'',
     });
   
     const handleChange = (name, value) => {
@@ -23,9 +26,13 @@ const cadastroCli = () => {
   
     const handleSubmit = async () => {
       try {
-        console.log(formData);
-        await usuarioService.postUsuario(formData);
+        const user = await usuarioService.postUsuario(formData);
+        console.log(user.data._id);
+        formData._id = user.data._id;
+        console.log(formData)
+        await clientesService.createClientes(formData);
         alert('Inserido!');
+        navigation.navigate('loginCli')
       } catch (error) {
         console.error(error);
       }
@@ -47,6 +54,20 @@ const cadastroCli = () => {
           value={formData.email}
           onChangeText={(text) => handleChange('email', text)}
         />
+         <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          value={formData.cpf}
+          onChangeText={(text) => handleChange('cpf', text)}
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="telefone"
+          value={formData.fone}
+          onChangeText={(text) => handleChange('fone', text)}
+         
+        />
        <TextInput
           style={styles.input}
           placeholder="Senha"
@@ -54,6 +75,8 @@ const cadastroCli = () => {
           onChangeText={(text) => handleChange('senha', text)}
           secureTextEntry
         />
+       
+        
         
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.text}>Cadastrar</Text>

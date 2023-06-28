@@ -46,7 +46,7 @@ exports.createusuario = async (req, res) => {
     newUser.token = jwt.sign(payload, secretKey);
 
     await newUser.save();
-
+    console.log(newUser);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });

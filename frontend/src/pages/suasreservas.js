@@ -1,18 +1,57 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image,StyleSheet} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image,StyleSheet, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import reservasService from '../services/reservasService';
 const suasreservas = () => {
 const navigation = useNavigation();
+
+const [reservas,setReservas] = useState([]);
+
+useEffect(() => {
+  async function fetchReservas() {
+    try {
+      const response = await reservasService.getReservas();
+      console.log(response.data);
+      setReservas(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  fetchReservas();
+}, [reservas]);
+
+
+
+
 
     return (
         
           <View style={styles.fundo} >
             <Text style={styles.text3} >Suas Reservas </Text>
-            
-            <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('loginProp')}>
+
+          <ScrollView>
+              <View>
+                {reservas?reservas.map((reserva,index)=>(
+                  <View>
+                  <Text>NOME: {reserva.cliente}</Text>
+                  <Text>FLUTUANTE: {reserva.flutuante}</Text>
+                  <Text>DATA: {reserva.data}</Text>
+                  <Text>HORA INICIO: {reserva.inicio}</Text>
+                  <Text>HORA FIM:{reserva.fim}</Text>
+                  <Text>VALOR: {reserva.valor} {'\n'}</Text>
+                   
+                  
+                  </View>
+                )):""}
+                 <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('loginProp')}>
                 <Text style={styles.text2} >Finalizar</Text>
             </TouchableOpacity>
+                </View>
+              
+                </ScrollView>
+           
+                        
+            
            
           </View>
 

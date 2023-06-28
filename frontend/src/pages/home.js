@@ -8,7 +8,7 @@ const navigation = useNavigation();
     return (
         
           <View style={styles.fundo} >
-             <Text style={styles.text4} >FlutoAPP</Text>
+             <Text style={styles.text4} >FlutuAPP</Text>
             <Image
           source={require('../pages/imagens/logo.png')}
           style={styles.logo}
@@ -20,8 +20,8 @@ const navigation = useNavigation();
                 <Text style={styles.text} >Procuro Flutuante</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('loginProp')}>
-                <Text style={styles.text2} >Propietario Flutuante</Text>
+            <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('suasreservas')}>
+                <Text style={styles.text2} >Proprietario Flutuante</Text>
             </TouchableOpacity>
            
           </View>

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 var flutuantesService = {
   getFlutuantes: async () => {
-    var flutuanteAPI = axios.get('http://localhost:5000/flutuantes');
+    var flutuanteAPI = axios.get('http://10.0.2.2:5000/flutuantes');
     return await flutuanteAPI;
   },
 
